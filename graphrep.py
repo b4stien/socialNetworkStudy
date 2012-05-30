@@ -11,6 +11,10 @@ def updateReputation(G):
     for node in G.nodes():
         newRep[node] = G.node[node]['reput']
         for friend in G.neighbors(node):
-            newRep[node] += (G.node[friend]['reput'] - G.node[node]['reput'])/2 * affect(node, friend)/G.degree(node)
+            if((node, friend) in affect):
+                aff = affect[(node, friend)]
+            else:
+                aff = affect[(friend, node)]
+            newRep[node] += (G.node[friend]['reput'] - G.node[node]['reput'])/2 * aff/G.degree(node)
     nx.set_node_attributes(G, 'reput', newRep)
     return G
