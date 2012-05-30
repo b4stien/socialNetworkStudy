@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import networkx as nx
+import graphlib
 import random
 
 def generator(n):
@@ -27,7 +28,7 @@ def generator(n):
 
 	'''In this bloc we set reputations'''
 	reput = {}
-	md = max_degree(G)
+	md = graphlib.max_degree(G)
 	for i in range(G.number_of_nodes()):
 		reput[i] = float(G.degree(i))/float(md)
 
@@ -42,10 +43,3 @@ def generator(n):
 	nx.set_edge_attributes(G,'affect',affect)	
 
 	return G
-
-def max_degree(G):
-	'''We search the maximum degree of G's nodes '''
-	m = 0
-	for i in range(G.number_of_nodes()):
-		if G.degree(i) >= m : m = G.degree(i)
-	return m
