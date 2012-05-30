@@ -16,7 +16,7 @@ affect = nx.get_edge_attributes(G, 'affect')
 #rep is a dict indexed by nodes, and with reput's value
 rep = nx.get_node_attributes(G, 'reput')
 
-graphlib.plot_graph(G)
+#graphlib.plot_graph(G)
 
 #print graphlib.node_size(G)
 
@@ -27,5 +27,6 @@ for i in range(500):
 	G = graphrep.updateReputation(G)
 ax2 = fig.add_subplot(122)
 ax2.plot(nx.draw_circular(G, node_size=graphlib.node_size(G), with_labels=False))
-plt.show()
-'''
+plt.show()'''
+
+print graphlib.plot_graphs(range(5))
