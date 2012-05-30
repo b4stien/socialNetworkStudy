@@ -20,24 +20,34 @@ def node_size(G):
 
 	return node_size
 
+def graph(G, layout=None):
+        if(layout == None):
+                layout = nx.spring_layout(G)
+        return nx.draw(G,layout, with_labels=False,
+                       node_color = nx.get_node_attributes(G, 'reput').values(),
+                       cmap=plt.cm.Blues, node_size = 100,
+                       linewidths = 0.3,
+                       edge_color = nx.get_edge_attributes(G, 'affect').values(),
+                       edge_cmap = plt.cm.Reds, width = 2)
+        
+
 def plot_graph(G):
-	nx.draw_circular(G, node_size=node_size(G), with_labels=False)
+	graph(G)
 	plt.show()
 	return True
 
 def plot_graphs(graph_list):
-	fig = plt.figure()
+        length = len(graph_list)
+        fig = plt.figure()
+        layout = nx.spring_layout(graph_list[0])
+        for i in range(length):
+                G = graph_list[i]
+                ax1 = fig.add_subplot(3*100+length*10+i+1)
+                ax1.plot(graph(G, layout))
+                ax3 = fig.add_subplot(3*100+length*10+length+i+1)
+                ax3.hist(nx.degree_histogram(G))
+                ax5 = fig.add_subplot(3*100+length*10+2*length+i+1)
+                ax5.hist(nx.get_node_attributes(G, 'reput').values())
 
-	#Calculating the int as all graphs will fit into a int*int matrix of plot.
-	foo = int(math.ceil(math.sqrt(len(graph_list))))
-
-	for i in range(len(graph_list)):
-		'''ax+i = fig.add_subplot(int(str(foo)+str(foo)+str(i)))
-								ax1.plot(nx.draw_circular(G, node_size=graphlib.node_size(G), with_labels=False))
-								for i in range(500):
-									G = graphrep.updateReputation(G)
-								ax2 = fig.add_subplot(122)
-								ax2.plot(nx.draw_circular(G, node_size=graphlib.node_size(G), with_labels=False))'''
-
-	plt.show()
-	return True
+        plt.show()
+        return True
