@@ -30,7 +30,7 @@ def generator(n):
 	reput = {}
 	md = graphlib.max_degree(G)
 	for i in range(G.number_of_nodes()):
-		reput[i] = float(G.degree(i))/float(md)
+		reput[i] = random.random() #float(G.degree(i))/float(md)
 
 	nx.set_node_attributes(G,'reput',reput)
 
