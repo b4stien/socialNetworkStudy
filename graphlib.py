@@ -50,3 +50,11 @@ def plot_graphs(graph_list):
 
 	plt.show()
 	return True
+
+def possible_friends(G, node):
+	ret = []
+	for i in G.neighbors(node):
+		for j in G.neighbors(i):
+			if G.node[j]['reput']>G.node[node]['reput'] and j not in ret:
+				ret.append(j)
+	return ret
