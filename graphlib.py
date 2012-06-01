@@ -37,10 +37,9 @@ def plot_graph(G):
 	plt.show()
 	return True
 
-def plot_graphs(graph_list):
+def plot_graphs(graph_list, layout):
 	length = len(graph_list)
 	fig = plt.figure()
-	layout = nx.spring_layout(graph_list[0])
 	for i in range(length):
 		G = graph_list[i]
 		ax1 = fig.add_subplot(3*100+length*10+i+1)
