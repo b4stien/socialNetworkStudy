@@ -26,9 +26,11 @@ def graph(G, layout=None):
         return nx.draw(G,layout, with_labels=False,
                        node_color = nx.get_node_attributes(G, 'reput').values(),
                        cmap=plt.cm.Blues, node_size = 100,
+                       vmin = 0, vmax = 1,
                        linewidths = 0.3,
                        edge_color = nx.get_edge_attributes(G, 'affect').values(),
-                       edge_cmap = plt.cm.Reds, width = 2)
+                       edge_cmap = plt.cm.Reds, width = 2,
+                       edge_vmin = 0, edge_vmax = 1)
         
 
 def plot_graph(G):
