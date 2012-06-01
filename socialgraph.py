@@ -14,4 +14,4 @@ def evolution(nbNodes, nbRepUpdates):
                 G = graphrep.updateReputation(G)
         graphlib.plot_graphs([G0, G])
 
-evolution(20, 5)
+evolution(20, 50)
