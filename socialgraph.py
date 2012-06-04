@@ -11,18 +11,19 @@ import graphevo
 def evolution(nbNodes, nbRepUpdates):
     G = graphgen.generator(nbNodes)
     layout = nx.spring_layout(G)
-    G0 = copy.copy(G)
+    G0 = G.copy()
     again = "y"
     n = 2
     while(again == "y" and n < 9):
-        Gn = copy.copy(G)
+        Gn = G.copy()
         for i in range(nbRepUpdates):
-            G = graphevo.delete_links(G)
-            G = graphevo.create_links(G)
+            for j in range(5):
+                G = graphevo.delete_links(G)
+                for k in range(10):
+                    G = graphevo.create_links(G)
             G = graphrep.updateReputation(G)
         n += 1
         graphlib.plot_graphs([G0, Gn, G], layout)
         again = raw_input("Do you want to continue ? (y or n)")
 
-evolution(100, 100)
-
+evolution(110, 20)

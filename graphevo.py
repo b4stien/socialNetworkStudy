@@ -8,7 +8,7 @@ def delete_links(G):
 	The link is deleted if (r1-r2)/affect(n1, n2)*deg(n1) > alpha
 	where r1 > r2 and alpha is a random number between 0 and a given paramater beta.
 	'''
-	beta = 10
+	beta = 100
 	reput = nx.get_node_attributes(G, "reput")
 	affect = nx.get_edge_attributes(G, "affect")
 	n = 0

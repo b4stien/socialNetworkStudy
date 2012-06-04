@@ -4,6 +4,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import random
 import math
+import numpy as np
 
 def max_degree(G):
 	'''We search the maximum degree of G's nodes '''
@@ -44,8 +45,18 @@ def plot_graphs(graph_list, layout):
 		G = graph_list[i]
 		ax1 = fig.add_subplot(3*100+length*10+i+1)
 		ax1.plot(graph(G, layout))
+
+
 		ax3 = fig.add_subplot(3*100+length*10+length+i+1)
-		ax3.hist(nx.degree_histogram(G))
+		N = len(nx.degree_histogram(G))+2
+		rep = [0]+nx.degree_histogram(G)+[0]
+		legend = ['']+[str(j) for j in range(len(nx.degree_histogram(G)))]+['']
+		ind = np.arange(N)
+		width = 0.1
+		ax3.bar(ind, rep, width, color='r')
+		plt.xticks(ind+width/2., legend)
+
+
 		ax5 = fig.add_subplot(3*100+length*10+2*length+i+1)
 		ax5.hist(nx.get_node_attributes(G, 'reput').values())
 
